@@ -34,10 +34,10 @@ Full API documentation is available [here][docs].
 
 ````js
     // Create a new Link Generator object
-    var AssetZen = new LinkGenerator("myAccountId");
+    var linkgen = new AssetZen.LinkGenerator("myAccountId");
 
     // Generate a link
-    var link     = AssetZen.link({
+    var link     = linkgen.link({
         imageId: 'myImageId',
         width: 800,
         height: 600,
