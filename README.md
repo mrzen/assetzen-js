@@ -57,3 +57,4 @@ While it should also work in Internet Explorer, there is no official support for
 
 [dist-min]: dist/assetzen.min.js
 [dist-dev]: dist/assetzen.js
+[docs]: https://mrzen.github.io/assetzen-js/
