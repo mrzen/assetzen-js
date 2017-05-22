@@ -4,7 +4,7 @@ export namespace AssetZen {
 
     /**
      * Point represents a single x/y point position on an image.
-     * 
+     *
      * @class Point
      */
     export class Point {
@@ -21,15 +21,15 @@ export namespace AssetZen {
 
     /**
      * ImageParams represents the valid parameters for the image service.
-     * 
+     *
      * @class ImageParams
      */
     export class ImageParams {
         /**
-         * 
+         *
          * Desired width of the image.
          * Must be an integer between 1 and the original image width.
-         * 
+         *
          * @optional
          */
         width: number;
@@ -37,7 +37,7 @@ export namespace AssetZen {
         /**
          * Desired height of the image.
          * Must be an integer between 1 and the original image height.
-         * 
+         *
          * @optional
          */
         height: number;
@@ -46,7 +46,7 @@ export namespace AssetZen {
          * Desired image Quality.
          * Only used for JPEG images.
          * Must be an integer between 0 and 100.
-         * 
+         *
          * @optional
          * @onlyFormats jpeg
          */
@@ -56,7 +56,7 @@ export namespace AssetZen {
          * Number of colours to use in the image palette.
          * Only used for GIF images.
          * Must be an integer between 2 and 256
-         * 
+         *
          * @optional
          * @onlyFormats gif
          */
@@ -71,33 +71,33 @@ export namespace AssetZen {
          * Override the focus point for this image.
          * Must be a valid Point with X,Y coordinates inside the original image,
          * scaled to the original image.
-         * 
+         *
          * @optional
          */
         focus: Point
 
         /**
          * Ignore all focus point settings, and crop to the center of the image.
-         * 
+         *
          * @optional
          */
-        ignore_focus: boolean; 
+        ignore_focus: boolean;
     }
 
     /**
      * Default API endpoint
      */
-    const DEFAULT_ENDPOINT = 'https://d27b5g82laziwq.cloudfront.net';
+    const DEFAULT_ENDPOINT = 'https://cdn.assetzen.net';
 
     /**
      * LinkGenerator is a helper to generate image links, given
      * a valid set of `ImageParams` and constructed with an `accountId`
      */
     export class LinkGenerator {
-        
+
         /**
          * The ID of the account to use and sign requests as.
-         * 
+         *
          */
         private accountId: string;
 
@@ -108,7 +108,7 @@ export namespace AssetZen {
 
         /**
          * Constructor
-         * 
+         *
          * @param accountId The ID of the account to use for signing generated links.
          */
         constructor(accountId: string, endpoint?:string) {
@@ -123,9 +123,9 @@ export namespace AssetZen {
 
         /**
          * Get a link to an image with the given parameters.
-         * 
+         *
          * @param params Image Parameters (see `ImageParams`)
-         * 
+         *
          * @return image URL
          */
         public link(params: ImageParams):string {
@@ -144,8 +144,8 @@ export namespace AssetZen {
 
         private getNewHMAC(): SHA.jsSHA {
             var sha = new SHA('SHA-256', 'TEXT');
-            sha.setHMACKey(this.accountId, 'TEXT'); 
-    
+            sha.setHMACKey(this.accountId, 'TEXT');
+
             return sha;
         }
 
@@ -157,5 +157,8 @@ export namespace AssetZen {
     }
 }
 
-/* Export to Window */
+/**
+ * Exports the AssetZen namespace to the window
+ * so that non TS scripts can easily use it.
+ */
 window['AssetZen'] = AssetZen;
